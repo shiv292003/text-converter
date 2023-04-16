@@ -1,2 +1,4 @@
-it is an web app in which you search the movie according to their name 
-it is made using reactjs 
+It is an text converter 
+it has functions like speak , lowercase , uppercase etc;
+
+made using reactjs
