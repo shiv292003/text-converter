@@ -1,24 +1,52 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Navbar from './Components/Navbar';
+import TextForm from './Components/TextForm';
+import Alert from './Components/Alert';
+
+
+// import About from './Components/About';
+
 
 function App() {
+     const[Mode , setMode] = useState('light'); // whether dark mode is enable or not 
+
+    const toggleMode = () => {
+      if(Mode === 'light'){
+        setMode('dark');
+        document.body.style.backgroundColor = 'black';
+        showAlert("Dark Mode is enabled" , "success");
+
+      }else{
+        setMode('light');
+        document.body.style.backgroundColor = 'white';
+        showAlert("Light Mode is enabled" , "success");
+
+      }
+    }
+
+    const[alert , setAlert] = useState(null);
+
+    const showAlert = (message , type)=>{
+         setAlert({
+          msg: message,            //ye ek object hai 
+          type: type
+         })
+         
+         setTimeout(() => {
+          setAlert(null)
+         },3000) 
+          
+    }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>   
+        <Navbar title = "hell" Mode = {Mode} toggleMode = {toggleMode} ></Navbar>
+        <Alert alert = {alert} />
+        <TextForm heading = "Enter your text" Mode = {Mode} showAlert = {showAlert} /> 
+         
+        {/* <About></About> */}
+    </>
   );
 }
 
